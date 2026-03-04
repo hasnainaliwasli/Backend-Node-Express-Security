@@ -50,7 +50,13 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
-// --- ROUTES FOR LEARNING ---
+// 0. Base Health Check (to verify backend is alive)
+app.get('/', (req, res) => {
+    res.status(200).json({ 
+        message: 'Security Backend is Live!',
+        frontend_allowed: FRONTEND_URL
+    });
+});
 
 // 0. CSRF Token Endpoint (Frontend calls this to get a token)
 app.get('/api/csrf-token', csrfProtection, (req, res) => {
